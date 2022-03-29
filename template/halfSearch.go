@@ -19,7 +19,7 @@ func halfSearch(nums []int, target int) int {
 		}
 	}
 	return -1
-	// 下面这种适合找到特定的目标值
+	// 下面这种适合找到特定的目标值12
 	// 这里再贴一个left<=right的，区别就在于
 	// right=n-1，然后循环结束的条件变成了left<=right，右边界缩减的时候，right=mid-1
 	//left, right := 0, len(nums)-1

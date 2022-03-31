@@ -5,6 +5,6 @@ import . "arithmetic/base/day05"
 
 func main() {
 	s := "abab"
-	p := "aab"
-	fmt.Println(FindAnagrams(s, p))
+	p := "ab"
+	fmt.Println(FindAnagrams1(s, p))
 }

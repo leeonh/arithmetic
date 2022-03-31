@@ -75,3 +75,37 @@ func FindAnagrams(s string, p string) (ans []int) {
 
 	return
 }
+
+/*滑动窗口加双指针优化*/
+func FindAnagrams1(s string, p string) (ans []int) {
+	// 获取两个字符串的长度
+	n, m := len(s), len(p)
+	// 新建两个数组，用来记录字符出现的次数
+	var sCnt, pCnt [26]int
+	// 将p字符串里出现的字符次数放进去数组
+	for i := 0; i < m; i++ {
+		pCnt[p[i]-'a'] += 1
+	}
+	// 使用两个指针，分别left就是滑动窗口的左边界，right就是滑动窗口的右边界，循环结束条件就是，右边界碰到了字符串s的最后一个字符，因为再往后就超界了
+	// 首先右边界一直向右移动，同时将扫描的字符加入数组，当左边界和右边界的距离等于目标字符串长度的时候，就将字符串进行比对
+	for left, right := 0, 0; right < n; right++ {
+		// right每次+1后，判断left和right之间的距离等于目标字符串的长度
+		sCnt[s[right]-'a']++
+		if right-left+1 > m {
+			// 如果左边界和右边界的距离大于目标值长度
+			// 先将当前left位置的字符去掉，再移动左边界
+			// 这样就能保证滑动窗口的长度等于目标值长度，从而进入到下面的对比判断里面
+			sCnt[s[left]-'a']--
+			left++
+		}
+		if right-left+1 == m {
+			// 如果区间长度和目标字符串长度一致，就对比两个字符是否相等
+			if sCnt == pCnt {
+				// 相等说明字符都一样，是异位词
+				ans = append(ans, left)
+			}
+		}
+	}
+
+	return
+}

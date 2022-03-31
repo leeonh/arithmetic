@@ -2,6 +2,21 @@ package template
 
 /*
 滑动窗口模板
+伪代码:
+
+int left = 0;
+int right = 0;
+
+while (right < s.size()) {
+	// 滑动窗口右边界向右移动扩张
+	window.add(s[right]);
+	right++;
+	while(valid) {
+		// 滑动窗口左边界向右移动缩小
+		window.remove(s[left])
+		left++
+	}
+}
 
 滑动窗口大体有两种
 

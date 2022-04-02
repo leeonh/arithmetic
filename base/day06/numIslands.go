@@ -40,7 +40,10 @@ var (
 	dy = []int{1, 0, -1, 0}
 )
 
-func NumIslands(grid [][]byte) int {
+/*
+广度优先 BFS
+*/
+func numIslands(grid [][]byte) int {
 	// 定义岛屿数量
 	ans := 0
 	// 循环岛屿每个点，如果为'1'，就BFS广度优先，将相邻的'1'，全部标记为已访问'2'，然后岛屿数量+1
@@ -65,7 +68,7 @@ func NumIslands(grid [][]byte) int {
 						// y轴移动
 						y := cur[1] + dy[k]
 						// 坐标移动后，不能超界，如果不等于'1'直接跳过
-						if x < 0 || x > n || y < 0 || y > m || grid[x][y] != '1' {
+						if x < 0 || x >= n || y < 0 || y >= m || grid[x][y] != '1' {
 							continue
 						}
 						// 如果等于'1'，坐标加入队列
